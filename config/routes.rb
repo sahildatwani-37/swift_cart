@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get 'products/search', to: 'products#search'
   end
 
-  # resources :products, only: [:show]
+  resources :products, only: [:show]
 
   get 'admin/index', to: 'admin#index', as: :admin_index
 

@@ -18,8 +18,18 @@ class ProductSearchService
       }
     }
 
-    search_definition[:query][:bool][:must] << { match: { title: @query } } if @query.present?
+    # search_definition[:query][:bool][:must] << { match: { title: @query } } if @query.present?
 
+    if @query.present?
+      search_definition[:query][:bool][:must] << {
+        multi_match: {
+          query: @query,
+          fields: ['title^3', 'description'],
+          fuzziness: 'AUTO'
+        }
+      }
+    end
+      
     if @min_price.present? || @max_price.present?
       search_definition[:query][:bool][:filter] << {
         range: {
