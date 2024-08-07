@@ -1,0 +1,82 @@
+<div class="container-fluid" style="margin-left: 210px; padding-top: 20px; max-width: calc(100% - 210px);">
+  <h1 style="font-family: 'Cinzel', serif; color: #d4af37;">Admin Dashboard</h1>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card mb-4" style="background-color: #343a40; color: #ffffff;">
+        <div class="card-header" style="background-color: #212529; border-bottom: 2px solid #d4af37;">
+          Total Revenue
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= number_to_currency(@total_revenue, unit: "₹") %></h5>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card mb-4" style="background-color: #343a40; color: #ffffff;">
+        <div class="card-header" style="background-color: #212529; border-bottom: 2px solid #d4af37;">
+          Total Orders
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= @total_orders %></h5>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card mb-4" style="background-color: #343a40; color: #ffffff;">
+        <div class="card-header" style="background-color: #212529; border-bottom: 2px solid #d4af37;">
+          Pending Orders
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= @total_pending_orders %></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="font-family: 'Cinzel', serif; color: #d4af37;">Top Selling Products</h2>
+  <div class="table-responsive">
+    <table class="table table-striped" style="font-family: 'Arial', sans-serif; color: #ffffff; background-color: #343a40;">
+      <thead>
+        <tr>
+          <th style="color: #d4af37;">Product Name</th>
+          <th style="color: #d4af37;">Sales Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @top_selling_products.each do |product| %>
+          <tr>
+            <td><%= product.title %></td>
+            <td><%= product.sales_count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 style="font-family: 'Cinzel', serif; color: #d4af37;">Recent Orders</h2>
+  <div class="table-responsive">
+    <table class="table table-striped" style="font-family: 'Arial', sans-serif; color: #ffffff; background-color: #343a40;">
+      <thead>
+        <tr>
+          <th style="color: #d4af37;">Customer Email</th>
+          <th style="color: #d4af37;">Total Price</th>
+          <th style="color: #d4af37;">Status</th>
+          <th style="color: #d4af37;">Order Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recent_orders.each do |order| %>
+          <tr>
+            <td><%= order.customer_email %></td>
+            <td><%= number_to_currency(order.total_price, unit: "₹") %></td>
+            <td><%= order.status %></td>
+            <td><%= order.order_date.strftime("%Y-%m-%d %H:%M") if order.order_date %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

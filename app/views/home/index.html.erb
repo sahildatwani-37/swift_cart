@@ -1,0 +1,77 @@
+<div class="container mt-4">
+  <div class="text-center mb-4">
+    <%= image_tag 'banner.png', alt: 'Sale Banner', class: 'img-fluid w-100' %>
+  </div>
+
+  <h2 class="text-center mt-5">Explore Popular Categories</h2>
+
+  <div class="row justify-content-center mt-4">
+    <% @categories.each do |category| %>
+      <div class="col-md-3 text-center mb-4">
+        <%= link_to category_path(category), style: "text-decoration: none; color: #d4af37;" do %>
+          <div class="rounded-circle" style="width: 150px; height: 150px; overflow: hidden; margin: 0 auto;">
+            <%= image_tag(category.image, class: "img-fluid") %>
+          </div>
+          <h2 class="text-gray-800 font-medium text-lg mt-2"><%= category.name %></h2>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <h2 class="text-center mt-5">What Our Customers Say</h2>
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-4">
+      <div class="card mb-4" style="height: 100%;">
+        <div class="card-body">
+          <p class="card-text">"Swift Cart has transformed my shopping experience! The variety and quality of products are outstanding. Highly recommend!"</p>
+          <h5 class="card-title">- Rohan Sharma</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4" style="height: 100%;">
+        <div class="card-body">
+          <p class="card-text">"I love how easy it is to find what I'm looking for on Swift Cart. The user-friendly interface makes online shopping a breeze."</p>
+          <h5 class="card-title">- Aditi Singh</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card mb-4" style="height: 100%;">
+        <div class="card-body">
+          <p class="card-text">"Swift Cart's customer service is top-notch. They always go above and beyond to ensure my satisfaction. Highly recommend this ecommerce platform!"</p>
+          <h5 class="card-title">- Aman Agarwal</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="bg-dark text-white pt-5 pb-4">
+  <div class="container text-center text-md-left">
+    <div class="row text-center text-md-left">
+      <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold">About Swift Cart</h5>
+        <p>Swift Cart is a leading ecommerce platform that offers a wide range of products at competitive prices. We are committed to providing an exceptional shopping experience to our customers.</p>
+      </div>
+      <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mt-3">
+        <h5 class="text-uppercase mb-4 font-weight-bold">Contact Us</h5>
+        <p>
+          Address: 123 Main Street<br>
+          Mumbai, Maharashtra 400001<br>
+          India
+        </p>
+        <p>
+          Email: support@swiftcart.com<br>
+          Phone: +91 1234567890
+        </p>
+      </div>
+    </div>
+    <hr class="mb-4">
+    <div class="row align-items-center">
+      <div class="col-md-12">
+        <p class="text-center">Copyright &copy; 2023 Swift Cart. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>

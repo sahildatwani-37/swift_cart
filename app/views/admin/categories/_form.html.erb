@@ -1,0 +1,45 @@
+<%= form_with(model: [:admin, admin_category]) do |form| %>
+  <% if admin_category.errors.any? %>
+    <div style="color: red; margin-left: 210px;">
+      <h2 style="font-family: 'Cinzel', serif; color: #d4af37;">
+        <%= pluralize(admin_category.errors.count, "error") %> prohibited this admin_category from being saved:
+      </h2>
+
+      <ul>
+        <% admin_category.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container-fluid" style="margin-left: 210px; padding-top: 20px; max-width: calc(100% - 210px);">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group" style="padding-top: 20px;">
+          <%= form.label :name, style: "display: block; color: #d4af37; font-family: 'Cinzel', serif;" %>
+          <%= form.text_field :name, class: 'form-control', style: "font-family: 'Arial', sans-serif; border: 1px solid #d4af37; padding: 10px;" %>
+        </div>
+
+        <div class="form-group" style="padding-top: 20px;">
+          <%= form.label :description, style: "display: block; color: #d4af37; font-family: 'Cinzel', serif;" %>
+          <%= form.text_area :description, class: 'form-control', style: "font-family: 'Arial', sans-serif; border: 1px solid #d4af37; padding: 10px;" %>
+        </div>
+
+        <div class="form-group" style="padding-top: 20px;">
+          <%= form.label :parent_id, 'Parent Category', style: "color: #d4af37; font-family: 'Cinzel', serif;" %>
+          <%= form.collection_select :parent_id, Category.all, :id, :name, { include_blank: true }, class: 'form-control', style: "font-family: 'Arial', sans-serif; border: 1px solid #d4af37; padding: 10px;" %>
+        </div>
+
+        <div class="form-group" style="padding-top: 20px;">
+          <%= form.label :image, style: "display: block; color: #d4af37; font-family: 'Cinzel', serif;" %>
+          <%= form.file_field :image, class: 'form-control', style: "font-family: 'Arial', sans-serif; border: 1px solid #d4af37; padding: 10px;" %>
+        </div>
+
+        <div class="form-group" style="padding-top: 20px;">
+          <%= form.submit 'Create Category', class: 'btn btn-primary', style: 'background-color: #d4af37; border-color: #d4af37; color: #343a40; font-family: Arial, sans-serif;' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

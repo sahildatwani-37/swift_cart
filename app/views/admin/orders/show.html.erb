@@ -1,0 +1,55 @@
+<div class="container-fluid" style="margin-left: 210px; padding-top: 20px; max-width: calc(100% - 210px);">
+  <h1 style="font-family: 'Cinzel', serif; color: #d4af37;">Order Details</h1>
+
+  <div class="card" style="background-color: #343a40; border: 1px solid #d4af37; padding: 20px;">
+    <p style="font-family: 'Arial', sans-serif; color: #ffffff;">
+      <strong style="color: #d4af37;">Customer Email:</strong>
+      <span style="color: #ffffff;"><%= @order.customer_email %></span>
+    </p>
+
+    <p style="font-family: 'Arial', sans-serif; color: #ffffff;">
+      <strong style="color: #d4af37;">Total Price:</strong>
+      <span style="color: #ffffff;"><%= number_to_currency(@order.total_price, unit: "₹") %></span>
+    </p>
+
+    <p style="font-family: 'Arial', sans-serif; color: #ffffff;">
+      <strong style="color: #d4af37;">Status:</strong>
+      <% status_class = case @order.status
+                       when 'completed'
+                         'badge bg-success'
+                       when 'canceled'
+                         'badge bg-danger'
+                       else
+                         'badge bg-warning'
+                       end %>
+      <span class="<%= status_class %>"><%= @order.status.capitalize %></span>
+    </p>
+
+    <p style="font-family: 'Arial', sans-serif; color: #ffffff;">
+      <strong style="color: #d4af37;">Order Date:</strong>
+      <span style="color: #ffffff;"><%= @order.order_date.strftime("%Y-%m-%d %H:%M") if @order.order_date %></span>
+    </p>
+
+    <p style="font-family: 'Arial', sans-serif; color: #ffffff;">
+      <strong style="color: #d4af37;">Shipping Address:</strong>
+      <span style="color: #ffffff;"><%= @order.shipping_address %></span>
+    </p>
+
+    <p style="font-family: 'Arial', sans-serif; color: #ffffff;">
+      <strong style="color: #d4af37;">Payment Method:</strong>
+      <span style="color: #ffffff;"><%= @order.payment_method %></span>
+    </p>
+
+    <h2 style="color: #d4af37;">Products</h2>
+    <ul style="color: #ffffff;">
+      <% @order.products.each do |product| %>
+        <li><%= product.title %></li>
+      <% end %>
+    </ul>
+  </div>
+
+  <div style="padding-top: 20px;">
+    <%= link_to 'Edit', edit_admin_order_path(@order), class: 'btn btn-warning', style: 'font-family: Arial, sans-serif;' %> |
+    <%= link_to 'Back', admin_orders_path, class: 'btn btn-secondary', style: 'font-family: Arial, sans-serif;' %>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container mt-5">
+  <h2 class="text-center" style="font-family: 'Cinzel', serif; color: #d4af37;">Log in</h2>
+
+  <div class="card" style="border: 1px solid #d4af37; padding: 20px;">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'mt-4' }) do |f| %>
+      <div class="form-group">
+        <%= f.label :email, class: "text-gray-800" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control mb-3" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, class: "text-gray-800" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control mb-3" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="form-group form-check">
+          <%= f.check_box :remember_me, class: "form-check-input" %>
+          <%= f.label :remember_me, class: "form-check-label" %>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.submit "Log in", class: "btn btn-dark btn-block mt-3" %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= render "devise/shared/links" %>
+</div>
